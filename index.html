@@ -1,4 +1,11 @@
-<!-- AARIA POPUP CHATBOT (WhatsApp Style) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AARIA Chatbot</title>
+
+<!-- ============= CSS ============= -->
 <style>
 #aariaPopup {
   position: fixed;
@@ -14,7 +21,6 @@
   z-index: 999999;
 }
 
-/* MOBILE CENTERED */
 @media(max-width:768px){
   #aariaPopup {
     bottom: 50%;
@@ -74,6 +80,10 @@
 }
 </style>
 
+</head>
+<body>
+
+<!-- ============= CHAT POPUP UI ============= -->
 <div id="aariaPopup">
   <div id="aariaHeader">AARIA • Chat Support</div>
   <div id="aariaChat"></div>
@@ -87,8 +97,9 @@
   </div>
 </div>
 
+<!-- ============= SCRIPT ============= -->
 <script>
-const API_URL = "YOUR_APPS_SCRIPT_WEB_URL_HERE";   // <--- Replace
+const API_URL = "YOUR_APPS_SCRIPT_WEB_URL_HERE"; // <-- Replace with real URL
 const sessionId = localStorage.getItem("aaria_session") || Math.random().toString(36).slice(2);
 localStorage.setItem("aaria_session", sessionId);
 
@@ -99,7 +110,7 @@ function showAaria() {
 function addMessage(role, text) {
   const chat = document.getElementById("aariaChat");
   const div = document.createElement("div");
-  div.className = role === "user" ? "msgUser" : "msgBot";
+  div.className = (role === "user") ? "msgUser" : "msgBot";
   div.innerText = text;
   chat.appendChild(div);
   chat.scrollTop = chat.scrollHeight;
@@ -123,3 +134,13 @@ async function sendAaria() {
   addMessage("bot", data.reply);
 }
 </script>
+
+<!-- DEMO BUTTON TO OPEN CHAT -->
+<button onclick="showAaria()" style="
+  position:fixed; bottom:20px; left:20px; padding:12px 18px;
+  background:#128C7E;color:white;border:none;border-radius:8px;">
+  Chat With AARIA
+</button>
+
+</body>
+</html>
